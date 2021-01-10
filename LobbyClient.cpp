@@ -159,17 +159,19 @@ HRESULT WriteReg(BOOL isHosting, TCHAR shcPath[MAX_PATH]) {
     BYTE* pData = NULL;
 
     HRESULT hr = g_pLobbyClient->EnumLocalPrograms(NULL, pData, &dwSize, &dwPrograms, 0);
-    if (hr != DPNERR_BUFFERTOOSMALL && FAILED(hr))
-        return DXTRACE_ERR(L"EnumLocalPrograms", hr);
+    if (hr != DPNERR_BUFFERTOOSMALL && FAILED(hr)) {
+        /*return DXTRACE_ERR(L"EnumLocalPrograms", hr);*/
+    }
 
     if (dwSize == 0)
     {
-        return S_FALSE;
+        /*return S_FALSE;*/
     }
 
     pData = new BYTE[dwSize];
-    if (FAILED(hr = g_pLobbyClient->EnumLocalPrograms(NULL, pData, &dwSize, &dwPrograms, 0)))
-        return DXTRACE_ERR(L"EnumLocalPrograms", hr);
+    if (FAILED(hr = g_pLobbyClient->EnumLocalPrograms(NULL, pData, &dwSize, &dwPrograms, 0))) {
+        /*return DXTRACE_ERR(L"EnumLocalPrograms", hr);*/
+    }
 
     BOOL shcFound = false;
     wchar_t shc[] = L"Stronghold Crusader Extreme";
